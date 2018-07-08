@@ -3,18 +3,12 @@ using UIInfoSuite.UIElements;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.Menus;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Globalization;
 using static StardewValley.LocalizedContentManager;
-using System.Resources;
-using System.Reflection;
 
 namespace UIInfoSuite
 {

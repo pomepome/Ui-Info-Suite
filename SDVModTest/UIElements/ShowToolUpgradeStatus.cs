@@ -1,14 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UIInfoSuite.Extensions;
 
 namespace UIInfoSuite.UIElements
@@ -42,15 +37,15 @@ namespace UIInfoSuite.UIElements
 
         private void CheckForMidDayChanges(object sender, EventArgs e)
         {
-            if (_toolBeingUpgraded != Game1.player.toolBeingUpgraded)
+            if (_toolBeingUpgraded != Game1.player.toolBeingUpgraded.Value)
                 DayChanged(null, null);
         }
 
         private void DayChanged(object sender, EventArgs e)
         {
-            if (Game1.player.toolBeingUpgraded != null)
+            if (Game1.player.toolBeingUpgraded.Value != null)
             {
-                _toolBeingUpgraded = Game1.player.toolBeingUpgraded;
+                _toolBeingUpgraded = Game1.player.toolBeingUpgraded.Value;
                 _toolTexturePosition = new Rectangle();
 
                 if (_toolBeingUpgraded is StardewValley.Tools.WateringCan)

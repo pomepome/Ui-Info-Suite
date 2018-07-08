@@ -2,24 +2,20 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using UIInfoSuite.Extensions;
-using UIInfoSuite.Options;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using StardewModdingAPI;
 
 namespace UIInfoSuite.UIElements
 {
     class ShowCalendarAndBillboardOnGameMenuButton : IDisposable
     {
-        private ClickableTextureComponent _showBillboardButton = 
+        private readonly ClickableTextureComponent _showBillboardButton = 
             new ClickableTextureComponent(
                 new Rectangle(0, 0, 99, 60), 
                 Game1.content.Load<Texture2D>(Path.Combine("Maps", "summer_town")), 
@@ -57,10 +53,8 @@ namespace UIInfoSuite.UIElements
             _hoverItem = Tools.GetHoveredItem();
             if (Game1.activeClickableMenu is GameMenu gameMenu)
             {
-                List<IClickableMenu> menuList = typeof(GameMenu).GetField("pages", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(Game1.activeClickableMenu) as List<IClickableMenu>;
-
-                if (menuList[0] is InventoryPage inventory)
-                    _heldItem = typeof(InventoryPage).GetField("heldItem", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(inventory) as Item;
+                if (typeof(GameMenu).GetField("pages", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(Game1.activeClickableMenu) is List<IClickableMenu> menuList && menuList[0] is InventoryPage inventory)
+                    _heldItem = typeof(InventoryPage).GetField("heldItem", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(inventory) as Item;
             }
         }
 
